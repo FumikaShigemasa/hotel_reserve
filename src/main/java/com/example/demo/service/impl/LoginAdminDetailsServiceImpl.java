@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Admin;
-import com.example.demo.entity.security.LoginUser;
+import com.example.demo.entity.security.LoginAdmin;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -37,11 +37,11 @@ public class LoginAdminDetailsServiceImpl implements UserDetailsService {
 		if (admin != null) {
 			//usernameが正しい時、LoginUserを返す
 
-			//			System.out.println(new BCryptPasswordEncoder().encode(user.getPassword()));
+			System.out.println("あどみん");
 
 			String adminIdStr = String.valueOf(admin.getId());
 
-			return new LoginUser(
+			return new LoginAdmin(
 					adminIdStr,
 					admin.getPassword(),
 					Collections.emptyList());
