@@ -10,6 +10,11 @@ import com.example.demo.form.UserLoginForm;
 
 public class UserLoginController {
 
+	@GetMapping("/")
+	public String top() {
+		return "top";
+	}
+
 	@GetMapping("/user/login")
 	public String login(
 			@ModelAttribute UserLoginForm userLoginFrom) {
@@ -17,9 +22,9 @@ public class UserLoginController {
 		return "userLogin";
 	}
 
-	@GetMapping("/")
+	@GetMapping("/user")
 	public String index() {
-		return "top";
+		return "userTop";
 	}
 
 }

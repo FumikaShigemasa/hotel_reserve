@@ -54,7 +54,7 @@ VALUES
 
 -- adminテーブルにデータを挿入するクエリ
 INSERT INTO admin (password,authority)
-VALUES('himitu','ADMIN');
+VALUES('$2a$10$e2p2hZNCfc/g2kItu9ew5.OQTGjDwKZhzvpuWJ0QXnTLsOD/v1Ks6','ADMIN');
 
 -- hotelsテーブルにデータを挿入するクエリ
 INSERT INTO hotels (name, explanation, prefecture, region, location, post_code, tell)
