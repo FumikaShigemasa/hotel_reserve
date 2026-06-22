@@ -37,6 +37,7 @@ public class SecurityConfig {
 				.securityMatcher("/admin/**")
 				.authorizeHttpRequests(authz -> authz//アクセスのルールを定義
 						.requestMatchers("/admin/login").permitAll()//　/loginには誰でもアクセス可能
+						.requestMatchers("/admin/**").hasRole("ADMIN")
 						.anyRequest().authenticated())
 				.formLogin(form -> form//フォームパッケージのログイン設定
 						.loginPage("/admin/login")//カスタムのログインページを設定(ログインしていない場合はすべてこのURLへ)
@@ -48,7 +49,7 @@ public class SecurityConfig {
 				)
 				.logout(logout -> logout//ログアウト設定
 						.logoutUrl("/admin/logout")//ログアウト処理をするURL
-						.logoutSuccessUrl("/admin/logout?logout")//ログアウト成功時のリダイレクト先
+						.logoutSuccessUrl("/admin/login?logout")//ログアウト成功時のリダイレクト先
 						.invalidateHttpSession(true)//ログアウト時にセッションを切る
 						.deleteCookies("JSESSIONID"));//ログアウト時にcookieを削除する
 
@@ -65,14 +66,15 @@ public class SecurityConfig {
 				.userDetailsService(userDetailsService)
 				.securityMatcher("/user/**")
 				.authorizeHttpRequests(authz -> authz//アクセスのルールを定義
-						.requestMatchers("/user/login/**").permitAll()//　/loginには誰でもアクセス可能
+						.requestMatchers("/user/login").permitAll()//　/loginには誰でもアクセス可能
+						.requestMatchers("/user/**").hasRole("USER")
 						.anyRequest().authenticated())
 				.formLogin(form -> form//フォームパッケージのログイン設定
 						.loginPage("/user/login")//カスタムのログインページを設定(ログインしていない場合はすべてこのURLへ)
 						.loginProcessingUrl("/user/authentication")//ログイン用のURL
 						.usernameParameter("email")//HTMLのname属性をusernameとして指定
 						.passwordParameter("password")//HTMLのname属性をpasswordとして指定
-						.defaultSuccessUrl("/")//ログイン成功時のリダイレクト先
+						.defaultSuccessUrl("/user")//ログイン成功時のリダイレクト先
 						.failureUrl("/user/login?error")//ログイン失敗時のリダイレクト先
 				)
 				.logout(logout -> logout//ログアウト設定
@@ -91,7 +93,7 @@ public class SecurityConfig {
 
 		http
 				.authorizeHttpRequests(authz -> authz//アクセスのルールを定義
-						.requestMatchers("/**").permitAll()//　/loginには誰でもアクセス可能
+						.requestMatchers("/**").permitAll()
 						.anyRequest().authenticated()//他のページはログインが必須
 				)
 				.httpBasic(Customizer.withDefaults());
