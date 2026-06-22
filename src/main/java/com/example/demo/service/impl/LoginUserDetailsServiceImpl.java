@@ -37,6 +37,8 @@ public class LoginUserDetailsServiceImpl implements UserDetailsService {
 
 			//			System.out.println(new BCryptPasswordEncoder().encode(user.getPassword()));
 
+			System.out.println("ゆーざー");
+
 			return new LoginUser(
 					user.getEmail(),
 					user.getPassword(),
