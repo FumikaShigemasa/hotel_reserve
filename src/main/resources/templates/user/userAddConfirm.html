@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>登録内容確認</title>
+</head>
+<body>
+
+	<main>
+		
+		<form th:object="${userAddForm}">
+		
+		<table border="1">
+			
+			<tr>
+				<th>名前</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			
+		</table>
+		
+		
+		<div th:object="${userAddForm}">
+			名前
+			<p th:text="*{name}"></p>
+		</div>
+		
+		</form>
+	</main>
+	
+</body>
+</html>

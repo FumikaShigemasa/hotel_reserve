@@ -21,6 +21,26 @@ public class Prefecture {
 
 	@ManyToOne
 	@JoinColumn(name = "region")
-	private Region region;//会員FK
+	private Region region;//地域FK
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
+	public Integer getId() {
+		return id;
+	}
 
 }
