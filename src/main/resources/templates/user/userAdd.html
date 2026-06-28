@@ -17,14 +17,14 @@
 				<tr>
 					<th>名前</th>
 					<td>
-						<input type="text" th:filde="*{name}">
-						<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+						<input type="text" th:field="*{name}">
+						<div th:if="${#fields.hasErrors('name')}" th:text="${#fields.errors('name')}"></div>
 					</td>
 				</tr>
 				<tr>
 					<th>性別</th>
 					<td>
-						<select th:filde="*{prefectureId}">
+						<select th:field="*{prefectureId}">
 							<option value="0">男性</option>
 							<option value="1">女性</option>
 							<option value="2">その他</option>
@@ -34,14 +34,14 @@
 				<tr>
 					<th>郵便番号</th>
 					<td>
-						<input type="number" th:filde="*{postCode}" class="p-postal-code" maxlength="8">
-						<div th:if="${#fields.hasErrors('postCode')}" th:errors="*{postCode}"></div>
+						<input type="number" th:field="*{postCode}" class="p-postal-code" maxlength="8">
+						<div th:if="${#fields.hasErrors('postCode')}" th:text="${#fields.errors('postCode')}"></div>
 					</td>
 				</tr>
 				<tr>
 					<th>都道府県</th>
 					<td>
-						<select th:filde="*{prefectureId}" class="p-region-id">
+						<select th:field="*{prefectureId}" class="p-region-id">
 							<option 
 							th:each="prefecture:${prefectureList}" 
 							th:text="${prefecture.name}" 
@@ -52,36 +52,35 @@
 				<tr>
 					<th>住所</th>
 					<td>
-						<input type="text" th:filde="*{location}" class="p-locality p-street-address p-extended-address">
-						<div th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
+						<input type="text" th:field="*{location}" class="p-locality p-street-address p-extended-address">
+						<div th:if="${#fields.hasErrors('location')}" th:text="${#fields.errors('location')}"></div>
 					</td>
 				</tr>
 				<tr>
 					<th>電話番号</th>
 					<td>
-						<input type="number" th:filde="*{tell}">
-						<div th:if="${#fields.hasErrors('tell')}" th:errors="*{tell}"></div>
+						<input type="number" th:field="*{tell}">
+						<div th:if="${#fields.hasErrors('tell')}" th:text="${#fields.errors('tell')}"></div>
 					</td>
 				</tr>
 				<tr>
 					<th>メールアドレス</th>
 					<td>
-						<input type="email" th:filde="*{email}">
-						<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+						<input type="text" th:field="*{email}">
+						<div th:if="${#fields.hasErrors('email')}" th:text="${#fields.errors('email')}"></div>
 					</td>
 				</tr>
 				<tr>
 					<th>パスワード</th>
 					<td>
-						<input type="password" th:filde="*{password}">
-						<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-						<div th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></div>
+						<input type="password" th:field="*{password}">
+						<div th:if="${#fields.hasErrors('password')}" th:text="${#fields.errors('password')}"></div>
 					</td>
 				</tr>
 				<tr>
 					<th>パスワード（再入力）</th>
 					<td>
-						<input type="password" th:filde="*{passwordConfirm}">
+						<input type="password" th:field="*{passwordConfirm}">
 					</td>
 				</tr>
 			</table>
