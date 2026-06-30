@@ -24,7 +24,7 @@ public class EmailDuplicationValidator implements ConstraintValidator<EmailDupli
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 
 		if (value == null || value.isEmpty()) {
-			return false;
+			return true;
 		}
 
 		User user = userRepository.findByEmail(value);
