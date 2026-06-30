@@ -32,6 +32,6 @@ public @interface EmailDuplication {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Documented
 	public static @interface List {
-		Password[] value();
+		EmailDuplication[] value();
 	}
 }
