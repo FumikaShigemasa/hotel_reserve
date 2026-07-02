@@ -11,12 +11,40 @@
 		<form th:object="${userAddForm}">
 		
 		<table border="1">
-			
 			<tr>
 				<th>名前</th>
 				<td th:text="*{name}"></td>
 			</tr>
-			
+			<tr>
+				<th>性別</th>
+				<td th:if="${*{gender}==0}" th:text="男性"></td>
+				<td th:if="${*{gender}==1}" th:text="女性"></td>
+				<td th:if="${*{gender}==2}" th:text="その他"></td>
+			</tr>
+			<tr>
+				<th>郵便番号</th>
+				<td th:text="*{postCode}"></td>
+			</tr>
+			<tr>
+				<th>都道府県</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			<tr>
+				<th>住所</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			<tr>
+				<th>電話番号</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td th:text="*{name}"></td>
+			</tr>
+			<tr>
+				<th>パスワード</th>
+				<td th:text="*{name}"></td>
+			</tr>
 		</table>
 		
 		
@@ -24,6 +52,8 @@
 			名前
 			<p th:text="*{name}"></p>
 		</div>
+		
+		<button>登録</button>
 		
 		</form>
 	</main>

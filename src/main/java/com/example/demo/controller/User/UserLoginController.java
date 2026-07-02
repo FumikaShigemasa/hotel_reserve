@@ -65,12 +65,11 @@ public class UserLoginController {
 
 			model.addAttribute("errorMap", accountService.validUserAdd(bindingResult));
 
-			System.out.println(userAddForm.getName());
 			model.addAttribute("prefectureList", accountService.getPrefecture());
 
 			return "user/userAdd";
 		} else {
-			System.out.println(userAddForm.getName());
+
 			model.addAttribute("userAddForm", userAddForm);
 
 			return "user/userAddConfirm";

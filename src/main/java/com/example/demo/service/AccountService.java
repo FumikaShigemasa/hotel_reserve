@@ -47,7 +47,7 @@ public class AccountService {
 		List<FieldError> postCodeErrorList = bindingResult.getFieldErrors("postCode");
 
 		if (!postCodeErrorList.isEmpty()) {
-			FieldError postCodeError = validPriorityError(postCodeErrorList, "NotBlank", "Size");
+			FieldError postCodeError = validPriorityError(postCodeErrorList, "NotBlank", "Pattern");
 			errorMap.put("postCode", postCodeError.getDefaultMessage());
 		}
 
@@ -55,7 +55,7 @@ public class AccountService {
 		List<FieldError> tellErrorList = bindingResult.getFieldErrors("tell");
 
 		if (!tellErrorList.isEmpty()) {
-			FieldError tellError = validPriorityError(tellErrorList, "NotBlank", "Size");
+			FieldError tellError = validPriorityError(tellErrorList, "NotBlank", "Pattern");
 			errorMap.put("tell", tellError.getDefaultMessage());
 		}
 
@@ -63,7 +63,7 @@ public class AccountService {
 		List<FieldError> passwordErrorList = bindingResult.getFieldErrors("password");
 
 		if (!passwordErrorList.isEmpty()) {
-			FieldError passwordError = validPriorityError(passwordErrorList, "NotBlank", "Size", "Password");
+			FieldError passwordError = validPriorityError(passwordErrorList, "NotBlank", "Pattern", "Password");
 			errorMap.put("password", passwordError.getDefaultMessage());
 		}
 
