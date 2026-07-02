@@ -2,7 +2,7 @@ package com.example.demo.form.account;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
 
 import com.example.demo.form.validation.EmailDuplication;
 import com.example.demo.form.validation.Password;
@@ -29,15 +29,15 @@ public class UserAddForm {
 	private String location;
 
 	@NotBlank(message = "郵便番号を入力してください")
-	@Size(min = 7, max = 7, message = "有効な郵便番号を入力してください")
+	@Pattern(regexp = "^[0-9]{7}$", message = "有効な郵便番号を入力してください")
 	private String postCode;
 
 	@NotBlank(message = "電話番号を入力してください")
-	@Size(min = 11, max = 15, message = "有効な電話番号を入力してください")
+	@Pattern(regexp = "^[0-9]{11,15}$", message = "有効な電話番号を入力してください")
 	private String tell;
 
 	@NotBlank(message = "パスワードを入力してください")
-	@Size(min = 8, message = "パスワードは8桁以上で設定してください")
+	@Pattern(regexp = "^[A-Z]+[0-9a-zA-Z]{7,}$", message = "大文字を含む英数字8桁以上で設定してください")
 	private String password;
 
 	private String passwordConfirm;
