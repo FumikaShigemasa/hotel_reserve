@@ -4,26 +4,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 import com.example.demo.entity.Prefecture;
+import com.example.demo.entity.Role;
+import com.example.demo.entity.User;
+import com.example.demo.form.account.UserAddForm;
 import com.example.demo.repository.PrefectureRepository;
+import com.example.demo.repository.UserRepository;
 
 @Service
 
 public class AccountService {
 
 	private final PrefectureRepository prefectureRepository;
+	private final UserRepository userRepository;
 
-	public AccountService(PrefectureRepository prefectureRepository) {
+	public AccountService(PrefectureRepository prefectureRepository, UserRepository userRepository) {
 		this.prefectureRepository = prefectureRepository;
+		this.userRepository = userRepository;
 	}
 
 	//=======入力フォームに必要な情報を取得する=======
 	//都道府県一覧を取得
-	public List<Prefecture> getPrefecture() {
+	public List<Prefecture> getAllPrefecture() {
 		return prefectureRepository.findAll();
 	}
 	//------------------------------------------
@@ -83,9 +90,46 @@ public class AccountService {
 		}
 
 		return errorList.get(0);
-
 	}
-
 	//----------------------------------
 
+	//======データベース登録処理======
+	//都道府県を変換
+	public Prefecture setPrefecture(String name) {
+
+		return prefectureRepository.findByName(name);
+	}
+
+	//性別を変換
+	public Integer setGender(String gender) {
+		if (gender.equals("男性")) {
+			return 0;
+		} else if (gender.equals("女性")) {
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+
+	public void createUser(UserAddForm userAddForm) {
+
+		Prefecture prefecture = setPrefecture(userAddForm.getPrefecture());
+		Integer gender = setGender(userAddForm.getGender());
+		String password = new BCryptPasswordEncoder().encode(userAddForm.getPassword());
+
+		User user = new User(
+				userAddForm.getEmail(),
+				password,
+				gender,
+				prefecture,
+				userAddForm.getLocation(),
+				userAddForm.getPostCode(),
+				userAddForm.getTell(),
+				false,
+				Role.USER);
+
+		userRepository.save(user);
+
+	}
+	//----------------------------
 }

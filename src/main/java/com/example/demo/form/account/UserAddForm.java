@@ -22,8 +22,11 @@ public class UserAddForm {
 	@NotBlank(message = "名前を入力してください")
 	private String name;
 
-	private Integer gender;
-	private Integer prefectureId;
+	@NotBlank(message = "性別を選択してください")
+	private String gender;
+
+	@NotBlank(message = "都道府県を選択してください")
+	private String prefecture;
 
 	@NotBlank(message = "住所を入力してください")
 	private String location;
