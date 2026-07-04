@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,7 +23,11 @@ public class User {
 	private String email;//メールアドレス
 	private String password;//パスワード
 	private Integer gender;//性別（0：男 1:女 2:その他）
-	private Integer prefecture;//都道府県
+
+	@ManyToOne
+	@JoinColumn(name = "prefecture")
+	private Prefecture prefecture;//都道府県
+
 	private String location;//住所
 
 	@Column(name = "post_code")
@@ -37,10 +43,9 @@ public class User {
 
 	//コンストラクタ
 	public User() {
-		super();
 	}
 
-	public User(String email, String password, Integer gender, Integer prefecture, String location, String postCode,
+	public User(String email, String password, Integer gender, Prefecture prefecture, String location, String postCode,
 			String tell, boolean isDelete, Role authority) {
 		this.email = email;
 		this.password = password;
@@ -78,11 +83,11 @@ public class User {
 		this.gender = gender;
 	}
 
-	public Integer getPrefecture() {
+	public Prefecture getPrefecture() {
 		return prefecture;
 	}
 
-	public void setPrefecture(Integer prefecture) {
+	public void setPrefecture(Prefecture prefecture) {
 		this.prefecture = prefecture;
 	}
 

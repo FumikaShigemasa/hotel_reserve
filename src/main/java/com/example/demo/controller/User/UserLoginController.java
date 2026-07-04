@@ -50,7 +50,7 @@ public class UserLoginController {
 			UserAddForm userAddForm,
 			Model model) {
 
-		model.addAttribute("prefectureList", accountService.getPrefecture());
+		model.addAttribute("prefectureList", accountService.getAllPrefecture());
 
 		return "user/userAdd";
 	}
@@ -64,21 +64,27 @@ public class UserLoginController {
 		if (bindingResult.hasErrors()) {
 
 			model.addAttribute("errorMap", accountService.validUserAdd(bindingResult));
-
-			model.addAttribute("prefectureList", accountService.getPrefecture());
+			model.addAttribute("prefectureList", accountService.getAllPrefecture());
 
 			return "user/userAdd";
 		} else {
 
 			model.addAttribute("userAddForm", userAddForm);
+			System.out.println(userAddForm.getGender());
 
 			return "user/userAddConfirm";
 		}
 	}
 
 	@PostMapping("/add/account")
-	public String create() {
-		return "user/userLogin";
+	public String create(
+			@ModelAttribute UserAddForm userAddForm) {
+
+		System.out.println(userAddForm.getGender());
+		System.out.println(userAddForm.getName());
+
+		accountService.createUser(userAddForm);
+		return "redirect:/user/login";
 	}
 	//-----------------------
 

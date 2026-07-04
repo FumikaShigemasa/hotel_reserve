@@ -24,11 +24,13 @@
 				<tr>
 					<th>性別</th>
 					<td>
-						<select th:field="*{prefectureId}">
-							<option value="0">男性</option>
-							<option value="1">女性</option>
-							<option value="2">その他</option>
+						<select th:field="*{gender}">
+							<option value="" selected>選択してください</option>
+							<option value="男性">男性</option>
+							<option value="女性">女性</option>
+							<option value="その他">その他</option>
 						</select>
+						<div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
 					</td>
 				</tr>
 				<tr>
@@ -41,12 +43,14 @@
 				<tr>
 					<th>都道府県</th>
 					<td>
-						<select th:field="*{prefectureId}" class="p-region-id">
+						<select th:field="*{prefecture}" class="p-region">
+							<option value="" selected>選択してください</option>
 							<option 
 							th:each="prefecture:${prefectureList}" 
 							th:text="${prefecture.name}" 
-							th:value="${prefecture.id+1}"></option>
+							th:value="${prefecture.name}"></option>
 						</select>
+						<div th:if="${#fields.hasErrors('prefecture')}" th:errors="*{prefecture}"></div>
 					</td>
 				</tr>
 				<tr>
