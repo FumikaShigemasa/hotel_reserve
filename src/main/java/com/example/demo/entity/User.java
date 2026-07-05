@@ -22,6 +22,7 @@ public class User {
 
 	private String email;//メールアドレス
 	private String password;//パスワード
+	private String name;//名前
 	private Integer gender;//性別（0：男 1:女 2:その他）
 
 	@ManyToOne
@@ -45,10 +46,11 @@ public class User {
 	public User() {
 	}
 
-	public User(String email, String password, Integer gender, Prefecture prefecture, String location, String postCode,
-			String tell, boolean isDelete, Role authority) {
+	public User(String email, String password, String name, Integer gender, Prefecture prefecture, String location,
+			String postCode, String tell, boolean isDelete, Role authority) {
 		this.email = email;
 		this.password = password;
+		this.name = name;
 		this.gender = gender;
 		this.prefecture = prefecture;
 		this.location = location;
@@ -73,6 +75,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Integer getGender() {

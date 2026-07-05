@@ -17,14 +17,14 @@ location TEXT NOT NULL,
 post_code VARCHAR(255) NOT NULL,
 tell VARCHAR(255) NOT NULL,
 is_deleted BOOLEAN NOT NULL,
-authority role NOT NULL
+authority VARCHAR(20) NOT NULL
 );
 
 -- 管理者テーブル
 CREATE TABLE admin (
 id BIGSERIAL PRIMARY KEY,
 password VARCHAR(255) NOT NULL,
-authority role NOT NULL
+authority VARCHAR(20) NOT NULL
 );
 
 -- ホテルテーブル

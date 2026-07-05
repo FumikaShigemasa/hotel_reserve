@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jakarta.transaction.Transactional;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -111,6 +113,7 @@ public class AccountService {
 		}
 	}
 
+	@Transactional
 	public void createUser(UserAddForm userAddForm) {
 
 		Prefecture prefecture = setPrefecture(userAddForm.getPrefecture());
@@ -120,6 +123,7 @@ public class AccountService {
 		User user = new User(
 				userAddForm.getEmail(),
 				password,
+				userAddForm.getName(),
 				gender,
 				prefecture,
 				userAddForm.getLocation(),
