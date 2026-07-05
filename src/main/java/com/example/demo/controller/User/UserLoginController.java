@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.form.account.UserAddForm;
 import com.example.demo.form.account.UserLoginForm;
+import com.example.demo.form.hotel.HotelSearchForm;
 import com.example.demo.service.AccountService;
 
 @Controller
@@ -25,7 +26,11 @@ public class UserLoginController {
 
 	//======TOP======
 	@GetMapping("/")
-	public String top() {
+	public String top(
+			HotelSearchForm hotelSearch,
+			Model model) {
+
+		model.addAttribute("prefectureList", accountService.getAllPrefecture());
 		return "user/top";
 	}
 	//----------------

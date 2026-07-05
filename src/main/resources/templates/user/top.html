@@ -9,7 +9,47 @@
 	
 	<main>
 		
-		<h1>みんながアクセスできるTOPページ</h1>
+		<h1>Bakuten Travel</h1>
+		
+		<sapn>ホテルを検索する</sapn>
+		
+		<div>
+			<span>キーワードで検索する</span>
+			<form action="/hotel/search/keyword" method="get">
+				<input type="text" name="keyword">
+				<button>検索</button>
+			</form>
+		</div>
+		
+		<br>
+		
+		<div>
+			<span>日にちで検索する</span>
+			<form action="/hotel/search/date" method="get" th:object="${hotelSearchForm}">
+				<span>チェックイン</span>
+				<input type="date" th:field="*{checkIn}">
+				<br>
+				<span>チェックアウト</span>
+				<input type="date" th:field="*{checkOut}">
+				<br>
+				<input type="number" th:field="*{room}">
+				<span>部屋</span>
+				<input type="number" th:field="*{person}">
+				<span>人</span>
+				<br>
+				都道府県
+				<select th:field="*{prefectureId}">
+					<option 
+					th:each="prefecture:${prefectureList}" 
+					th:text="${prefecture.name}" 
+					th:value="${prefecture.id}"></option>
+				</select>
+				<br>
+				<button>検索</button>
+			</form>
+		</div>
+		
+		<br>
 		
 		<a href="/user/login">ユーザーログイン</a>
 		<br>
